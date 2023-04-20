@@ -1,0 +1,7 @@
+behine-end
+maven
+springboot
+配置JAVA_HOME
+
+front-end
+naive ui
