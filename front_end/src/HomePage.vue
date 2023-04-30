@@ -1,19 +1,22 @@
 <template>
   <div class="full-screen" layout="column center-center">
-    <img id="background" :src="src" alt="background image">
+    <img id="background" src="img/bg.jpg" alt="background image">
     <div id="inner-part" layout="column top-center">
       <div layout="column top-center">
         <div id="icon" style="margin-top: 20px">
-          <a-avatar :size="100" :src="icon"/>
+          <a-avatar :size="100" src="img/icon.png"/>
         </div>
         <h1 id="name" style="margin-top: 5px">Kina Zhang</h1>
         <a-divider style="height: 5px;background-color: #39C5BB"/>
       </div>
       <div id="nav-bar" layout="row center-center">
-        <a-button class="button" size="auto">
+        <a-button class="button" size="auto" @click="$router.push('/blog')">
           <HomeOutlined/>
-          主页
+          博客
         </a-button>
+        <!--        <router-view>-->
+        <!--        </router-view>-->
+
         <a-button class="button" size="auto">
           <TagOutlined/>
           Mikutap
@@ -43,6 +46,7 @@
 import {defineComponent, ref} from 'vue';
 import {HomeOutlined, NodeIndexOutlined, TagOutlined} from '@ant-design/icons-vue';
 import {createFromIconfontCN} from '@ant-design/icons-vue';
+import IntroPage from "@/blog/IntroPage.vue";
 
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_4045328_kjkq65gr2wl.js',
@@ -54,14 +58,13 @@ export default defineComponent({
     TagOutlined,
     NodeIndexOutlined,
     IconFont,
+    // IntroPage
   },
   setup() {
     const handleMenuClick = (e: Event) => {
       console.log('click', e);
     };
     return {
-      src: require("../public/img/bg.jpg"),
-      icon: require("../public/img/icon.png"),
       btn_name: [
         {name: "简介"},
         {name: "博客"},

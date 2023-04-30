@@ -1,19 +1,20 @@
 <template>
   <!--  <TestPage></TestPage>-->
+  <router-view/>
+
   <!--  <IntroPage></IntroPage>-->
-  <HomePage></HomePage>
 </template>
 <script lang="ts">
 import HomePage from "@/HomePage.vue";
 import TestPage from "@/TestPage.vue";
-import IntroPage from "@/IntroPage.vue";
+import IntroPage from "@/blog/IntroPage.vue";
 
 
 export default {
   components: {
     // IntroPage,
     // TestPage,
-    HomePage,
+    // HomePage,
   },
   data() {
     return {

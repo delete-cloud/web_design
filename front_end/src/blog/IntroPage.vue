@@ -15,15 +15,16 @@
         <a-layout-sider width="200" :style="menuTheme === 'light'?theme:darkTheme">
           <!--        <a-layout-sider width="200">-->
           <div layout="column center-center" style="margin-top: 50px; margin-bottom: 50px">
-            <a-avatar id="avatar" :size="100" :src="icon"/>
+            <a-avatar id="avatar" :size="100" src="img/icon.png"/>
             <br>
-            <span>Kina Zhang</span>
+            <span :style="{color:(menuTheme === 'light'?'#001529':'#fff')}">Kina Zhang</span>
             <br>
             <a-switch
                 :checked="menuTheme === 'dark'"
                 checked-children="Dark"
                 un-checked-children="Light"
                 @change="changeMenuTheme"
+                :style="{backgroundColor:menuTheme === 'dark'?'#1da57a':'#bfbfbf'}"
             />
           </div>
           <a-menu
@@ -133,23 +134,20 @@ export default {
   setup() {
     const state = reactive({
       menuTheme: 'light',
-      current: ['1'],
+      // current: ['1'],
       // openKeys: ['sub1'],
       selectedKeys: ['1'],
       openKeys: ['sub1'],
     });
-    // const current = ref(['1']);
     const changeMenuTheme = (checked) => {
       state.menuTheme = checked ? 'dark' : 'light';
       // theme.primaryColor = (checked === 'dark') ? 'grey' : 'white';
     };
 
     return {
-      current: ref(['1']),
-      collapsed: ref(false),
-      openKeys: ref(['sub1']),
-      icon: require("../public/img/icon.png"),
-      menuMarginBottom: ref(40),
+      current: ['1'],
+      openKeys: ['sub1'],
+      menuMarginBottom: 40,
 
       theme: {
         backgroundColor: '#fff'
