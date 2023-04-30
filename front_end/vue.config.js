@@ -1,4 +1,16 @@
-const { defineConfig } = require('@vue/cli-service')
+const {defineConfig} = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+    transpileDependencies: true,
+    css: {
+        loaderOptions: {
+            less: {
+                modifyVars: {
+                    'primary-color': '#1DA57A',
+                    'link-color': '#1DA57A',
+                    'border-radius-base': '2px',
+                },
+                javascriptEnabled: true,
+            }
+        }
+    }
 })

@@ -1,12 +1,30 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <!--  <TestPage></TestPage>-->
+  <!--  <IntroPage></IntroPage>-->
+  <HomePage></HomePage>
 </template>
+<script lang="ts">
+import HomePage from "@/HomePage.vue";
+import TestPage from "@/TestPage.vue";
+import IntroPage from "@/IntroPage.vue";
 
-<style lang="less">
+
+export default {
+  components: {
+    // IntroPage,
+    // TestPage,
+    HomePage,
+  },
+  data() {
+    return {
+      // msg: "123"
+    }
+  }
+};
+</script>
+
+
+<!-- <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,4 +45,4 @@ nav {
     }
   }
 }
-</style>
+</style> -->
