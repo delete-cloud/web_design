@@ -1,17 +1,18 @@
 const {defineConfig} = require('@vue/cli-service')
+const webpack = require("webpack");
 module.exports = defineConfig({
     transpileDependencies: true,
     publicPath: './',
-    css: {
-        loaderOptions: {
-            less: {
-                modifyVars: {
-                    'primary-color': '#1DA57A',
-                    'link-color': '#1DA57A',
-                    'border-radius-base': '2px',
-                },
-                javascriptEnabled: true,
-            }
-        }
-    }
+    // css: {
+    //     less: {
+    //         lessOptions: {
+    //             modifyVars: {
+    //                 'primary-color': '#1abc9c',
+    //                 'link-color': '#1abc9c',
+    //                 'border-radius-base': '2px',
+    //             },
+    //             javascriptEnabled: true,
+    //         }
+    //     }
+    // }
 })

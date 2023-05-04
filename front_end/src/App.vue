@@ -1,49 +1,37 @@
+/* eslint-disable */
 <template>
-  <!--  <TestPage></TestPage>-->
-  <router-view/>
-
-  <!--  <IntroPage></IntroPage>-->
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component"/>
+    </keep-alive>
+  </router-view>
 </template>
-<script lang="ts">
-import HomePage from "@/HomePage.vue";
-import TestPage from "@/TestPage.vue";
-import IntroPage from "@/blog/IntroPage.vue";
+<script>
+// import HomePage from "@/HomePage.vue";
+// import TestPage from "@/TestPage.vue";
+// import IntroPage from "@/blog/BlogPage.vue";
+// import MikuTap from "@/mikutap/MikuTap.vue";
 
+import {ConfigProvider} from "ant-design-vue";
 
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#1abc9c',
+  },
+});
+// 记录访客数
 export default {
   components: {
+    // MikuTap
     // IntroPage,
     // TestPage,
     // HomePage,
   },
-  data() {
-    return {
-      // msg: "123"
-    }
-  }
-};
+
+}
 </script>
 
 
-<!-- <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style scoped>
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style> -->
+</style>
