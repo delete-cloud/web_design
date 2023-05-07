@@ -25,7 +25,7 @@
           <HomeOutlined/>
           博客
         </a-button>
-        <a-button class="button" size="auto" shape="round" @click="$router.replace('/mikutap')">
+        <a-button class="button" size="auto" shape="round" @click="goToMikutap">
           <TagOutlined/>
           Mikutap
         </a-button>
@@ -34,11 +34,11 @@
             <a-menu @click="handleMenuClick">
               <a-menu-item key="Bilibili">
                 <icon-font type="icon-bilibili-line"/>
-                <a href="https://space.bilibili.com/401502235">Bilibili</a>
+                <a href="https://space.bilibili.com/401502235" target="_blank">Bilibili</a>
               </a-menu-item>
               <a-menu-item key="Github">
                 <icon-font type="icon-github-line"/>
-                <a href="https://github.com/delete-cloud">Github</a></a-menu-item>
+                <a href="https://github.com/delete-cloud" target="_blank">Github</a></a-menu-item>
             </a-menu>
           </template>
           <a-button shape="round">
@@ -93,6 +93,13 @@ export default {
       const nextBg = this.$store.state.bgcount >= 3 ? 1 : this.$store.state.bgcount + 1
       this.$store.commit('changBgCount', nextBg)
       this.$router.replace(`/${nextBg}`)
+    },
+    goToMikutap() {
+      const {href} = this.$router.resolve({
+        path: "/mikutap",
+      });
+      window.open(href, '_blank');
+      return Promise.resolve(false);
     }
   },
   mounted() {

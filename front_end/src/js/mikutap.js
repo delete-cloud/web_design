@@ -164,7 +164,7 @@ export function mikutap() {
                             v();
                         break;
                     default:
-                        location.href = "/"
+                        location.href = "/#/mikutap"
                 }
             }),
             $("#bt_feedback a").click(n),
