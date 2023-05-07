@@ -5,7 +5,7 @@
               bordered=false
               :style="{width:'auto',background: (menuTheme === 'light'?'#fff':'#2c3e50'), color:(menuTheme === 'light'?'#2c3e50':'#bdc3c7')}">
         <template #extra><a :style="{color:(menuTheme === 'light'?'#1da57a':'#0063c0') }"
-                            @click="$router.replace('/')">Home</a></template>
+                            @click="$router.replace('/' + $store.state.bgcount)">Home</a></template>
         <a-alert message="学业情况" type="info"/>
         <br>
         <p style="margin-left: 10px">目前就读于吉林大学本科</p>
@@ -45,7 +45,7 @@
 <script>
 export default {
   name: "IntroPage",
-  props: ['menuTheme'],
+  props: ['menuTheme', 'bgcount'],
   setup() {
     return {
       alertTheme: {

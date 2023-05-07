@@ -1,7 +1,7 @@
 <template>
   <a-layout>
     <a-layout-header class="header" :style="menuTheme === 'light'?theme:darkTheme">
-      <div class="logo"/>
+      <!--      <div class="logo" :style="{ backgroundColor:'#1da57a' }"/>-->
       <a-menu
           :theme="menuTheme"
           mode="horizontal"
@@ -18,7 +18,7 @@
           <span :style="{color:(menuTheme === 'light'?'#2c3e50':'#bdc3c7')}">Kina Zhang</span>
           <br>
           <a-button type="text"><a :style="{color:(menuTheme === 'light'?'#1da57a':'#0063c0')}"
-                                   @click="$router.replace('/')">主页</a></a-button>
+                                   @click="$router.replace('/' + $store.state.bgcount)">主页</a></a-button>
           <br>
           <a-switch
               :checked="menuTheme === 'dark'"
@@ -35,21 +35,21 @@
             :style="{backgroundColor:menuTheme === 'dark'?'#2c3e50':'#fff',width:'auto',color:(menuTheme === 'light'?'#001529':'#bdc3c7')}"
         >
           <a-menu-item key="1" :style="{ marginBottom:menuMarginBottom}"
-                       @click="changeCurrentPage(1),$router.replace('/intro')">
+                       @click="changeCurrentPage(1),$router.replace('/blog/intro')">
             <template #icon>
               <UserOutlined style="margin-left: 50px"/>
             </template>
             简介
           </a-menu-item>
           <a-menu-item key="2" :style="{ marginBottom:menuMarginBottom }"
-                       @click="changeCurrentPage(2),$router.replace('/doc')">
+                       @click="changeCurrentPage(2),$router.replace('/blog/doc')">
             <template #icon>
               <LaptopOutlined style="margin-left: 50px"/>
             </template>
             文章
           </a-menu-item>
           <a-menu-item key="3" :style="{ marginBottom:menuMarginBottom }"
-                       @click="changeCurrentPage(3),$router.replace('/friend')">
+                       @click="changeCurrentPage(3),$router.replace('/blog/friend')">
             <template #icon>
               <NotificationOutlined style="margin-left: 50px"/>
             </template>
@@ -91,9 +91,6 @@ export default {
     UserOutlined,
     LaptopOutlined,
     NotificationOutlined,
-  },
-  mounted() {
-    // console.log(this.$refs.userCount.innerText)
   },
   setup() {
     const state = reactive({

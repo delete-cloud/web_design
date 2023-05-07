@@ -1,6 +1,12 @@
 <template>
   <div class="full-screen" layout="column center-center">
-    <img id="background" src="img/bg.jpg" alt="background image">
+    <transition name="fade" mode="out-in">
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component"/>
+        </keep-alive>
+      </router-view>
+    </transition>
     <div id="inner-part" layout="column top-center">
       <div layout="column top-center">
         <div id="icon" style="margin-top: 20px">
@@ -15,7 +21,7 @@
         <a-divider style="height: 5px;background-color: #39C5BB"/>
       </div>
       <div id="nav-bar" layout="row center-center">
-        <a-button class="button" size="auto" shape="round" @click="$router.replace('/intro')">
+        <a-button class="button" size="auto" shape="round" @click="$router.replace('/blog/intro')">
           <HomeOutlined/>
           博客
         </a-button>
@@ -42,15 +48,23 @@
         </a-dropdown>
       </div>
     </div>
+    <a-tooltip title="Change Background" color="cyan">
+      <a-button id="bg-change-btn"
+                :style="{ width:'45px', height:'45px', borderRadius:'50%'}"
+                @click="changeBackground">
+        <icon-font type="icon-huanfu"/>
+      </a-button>
+    </a-tooltip>
   </div>
+
 </template>
 <script lang="js">
-import {reactive, ref, toRefs} from 'vue';
 import {HomeOutlined, NodeIndexOutlined, TagOutlined} from '@ant-design/icons-vue';
 import {createFromIconfontCN} from '@ant-design/icons-vue';
+import router from "@/router";
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_4045328_kjkq65gr2wl.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_4045328_ojlyfk2zbyn.js',
 });
 
 export default {
@@ -74,7 +88,16 @@ export default {
       handleMenuClick,
     };
   },
-  methods: {},
+  methods: {
+    changeBackground() {
+      const nextBg = this.$store.state.bgcount >= 3 ? 1 : this.$store.state.bgcount + 1
+      this.$store.commit('changBgCount', nextBg)
+      this.$router.replace(`/${nextBg}`)
+    }
+  },
+  mounted() {
+    router.replace('1')
+  }
 };
 
 </script>
@@ -83,6 +106,7 @@ export default {
   height: 100vh;
   width: 100vw;
   position: fixed;
+  background-color: #969696;
   //z-index: -999999;
 
   //#test-div {
@@ -92,7 +116,6 @@ export default {
     position: absolute;
     width: 62%;
     //height: 38%;
-    //height: 38%;
     //width: 900px;
 
     opacity: 88%;
@@ -101,14 +124,15 @@ export default {
   }
 
   #background {
+    //background: url(public/img/bg1.jpg);
     position: absolute;
     border: none;
     width: 100vw;
+    background-size: cover;
     //height: 100vh;
     //z-index: -999999;
     max-height: none;
     max-width: none;
-
   }
 
   #head-div {
@@ -174,6 +198,33 @@ export default {
     50% {
       border-color: currentColor;
     }
+  }
+
+  #bg-change-btn {
+    margin-top: 75vh;
+    margin-left: 88vw;
+    opacity: 88%;
+  }
+
+  #bg-change-btn:hover {
+    background-color: cyan;
+    opacity: 68%;
+  }
+
+  // 背景渐变动画
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 1s ease;
+  }
+
+  .fade-leave-from,
+  .fade-enter-to {
+    opacity: 1;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 
